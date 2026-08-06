@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
 import healthRoutes from "./routers/health.routes.js";
+import authRoutes from "./routers/auth.routes.js";
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(cookieParser());
 
 // Health Check Route
 app.use("/api/v1/health", healthRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 export default app;
