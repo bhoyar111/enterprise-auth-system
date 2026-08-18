@@ -13,3 +13,19 @@ export const registerService = async (data) => {
 
     return user;
 };
+
+export const loginService = async (email, password) => {
+    const user = await User.findOne({ email }).select("+password");
+
+    if (!user) {
+        throw new Error("Invalid email or password.");
+    }
+
+    const isPasswordValid = await user.comparePassword(password);
+
+    if (!isPasswordValid) {
+        throw new Error("Invalid email or password.");
+    }
+
+    return user;
+};
